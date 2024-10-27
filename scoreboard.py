@@ -63,14 +63,6 @@ class Scoreboard:
             ship.rect.x = 10 + ship_number * ship.rect.width
             ship.rect.y = 10
             self.ships.add(ship)
-    
-        if self.ai_game.two_player_mode:
-            self.ships2 = Group()
-            for ship_number in range(self.stats.ship2_left):
-                ship = Ship(self.ai_game)
-                ship.rect.x = 10 + ship_number * ship.rect.width
-                ship.rect.y = 50  # 显示在第一行飞船下方
-                self.ships2.add(ship)
 
         if self.ai_game.two_player_mode:
             self.ships2 = Group()
@@ -88,3 +80,9 @@ class Scoreboard:
         self.ships.draw(self.screen)
         if self.ai_game.two_player_mode:
             self.ships2.draw(self.screen)
+
+    def check_high_score(self):
+        """Check to see if there's a new high score."""
+        if self.stats.score > self.stats.high_score:
+            self.stats.high_score = self.stats.score
+            self.prep_high_score()

@@ -3,6 +3,7 @@ from time import sleep
 
 import pygame
 import random
+import os
 
 from settings import Settings
 from game_stats import GameStats
@@ -27,7 +28,8 @@ class AlienInvasion:
         pygame.display.set_caption("Alien Invasion")
 
         # Load and play background music
-        pygame.mixer.music.load('bj.mp3')  # 替换为您的背景音乐文件路径
+        bg_music_path = os.path.join(os.path.dirname(__file__), 'bj.mp3')
+        pygame.mixer.music.load(bg_music_path)
         pygame.mixer.music.play(-1)  # -1 表示循环播放
 
         # Start Alien Invasion in an inactive state.
@@ -47,16 +49,18 @@ class AlienInvasion:
         self.aliens = pygame.sprite.Group()
 
         self._create_fleet()
-
-        # Load ship hit sound
-        self.explosion_sound = pygame.mixer.Sound('ship_hit.mp3')
+        
+        explosion_sound_path = os.path.join(os.path.dirname(__file__), 'ship_hit.mp3')
+        self.explosion_sound = pygame.mixer.Sound(explosion_sound_path)
 
         # Load the background image
-        self.bg_image = pygame.image.load('images/bj.bmp')  
+        bg_image_path = os.path.join(os.path.dirname(__file__), 'images', 'bj.bmp')
+        self.bg_image = pygame.image.load(bg_image_path)
         self.bg_image = pygame.transform.scale(self.bg_image, (self.settings.screen_width, self.settings.screen_height))
 
         # Load cover image
-        self.cover_image = pygame.image.load('images/bj.png')  # 替换为您的封面图像路径
+        cover_image_path = os.path.join(os.path.dirname(__file__), 'images', 'bj.png')
+        self.cover_image = pygame.image.load(cover_image_path)
         self.cover_image = pygame.transform.scale(self.cover_image, (self.settings.screen_width, self.settings.screen_height))
 
         # Load font for title
@@ -272,7 +276,7 @@ class AlienInvasion:
                 self.stats.score += self.settings.alien_points * len(aliens)
                 self.explosion_sound.play()  # 播放爆炸音效
             self.sb.prep_score()
-            self.sb.check_high_score()
+            self.sb.check_high_score()  # 确保调用 check_high_score 方法
         bullet_collisions = pygame.sprite.groupcollide(self.bullets, self.alien_bullets, True, True)
         if bullet_collisions:
             for bullets in bullet_collisions.values():

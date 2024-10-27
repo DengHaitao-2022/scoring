@@ -1,0 +1,21 @@
+# Python 缓存文件
+__pycache__/
+*.py[cod]
+
+# 虚拟环境
+venv/
+env/
+
+# PyInstaller 打包文件
+build/
+dist/
+
+# 排除 dist/AlienInvasion/_internal 路径
+dist/AlienInvasion/_internal/
+
+# 日志文件
+*.log
+
+# 操作系统生成的文件
+.DS_Store
+Thumbs.db

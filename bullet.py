@@ -1,5 +1,6 @@
 import pygame
 from pygame.sprite import Sprite
+import os
 
 class Bullet(Sprite):
     """A class to manage bullets fired from the ship."""
@@ -11,7 +12,8 @@ class Bullet(Sprite):
         self.settings = ai_game.settings
 
         # Load the bullet image and get its rect.
-        self.image = pygame.image.load(r'images/2.png')  # 这里替换为你自己的子弹图片路径
+        zd_image_path = os.path.join(os.path.dirname(__file__), 'images', '2.png')
+        self.image = pygame.image.load(zd_image_path) # 这里替换为你自己的子弹图片路径
         self.rect = self.image.get_rect()
         self.rect.midtop = ship.rect.midtop  # 使用传入的飞船位置
 

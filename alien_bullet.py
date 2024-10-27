@@ -1,5 +1,6 @@
 import pygame
 from pygame.sprite import Sprite
+import os
 
 class AlienBullet(Sprite):
     """A class to manage bullets fired from the aliens."""
@@ -12,7 +13,8 @@ class AlienBullet(Sprite):
         self.color = self.settings.alien_bullet_color
 
         # Create a bullet rect at (0, 0) and then set correct position.
-        self.image = pygame.image.load(r'images/zid.png')  # 这里替换为你自己的子弹图片路径
+        zid_image_path = os.path.join(os.path.dirname(__file__), 'images', 'zid.png')
+        self.image = pygame.image.load(zid_image_path) # 这里替换为你自己的子弹图片路径
         self.rect = pygame.Rect(0, 0, self.settings.bullet_width,
             self.settings.bullet_height)
         self.rect.midbottom = alien.rect.midbottom
