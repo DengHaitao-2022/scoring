@@ -12,5 +12,6 @@ class GameStats:
     def reset_stats(self):
         """Initialize statistics that can change during the game."""
         self.ships_left = self.settings.ship_limit
+        self.ship2_left = self.settings.ship_limit  # 添加第二艘飞船的生命值
         self.score = 0
         self.level = 1
