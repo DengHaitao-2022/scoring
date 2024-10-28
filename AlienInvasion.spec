@@ -1,5 +1,7 @@
 # AlienInvasion.spec
+
 # -*- mode: python ; coding: utf-8 -*-
+
 block_cipher = None
 
 a = Analysis(
@@ -8,10 +10,9 @@ a = Analysis(
     binaries=[],
     datas=[
         ('images/*', 'images'),  # 包含 images 文件夹中的所有文件
-        ('agane/*', 'agane'),    # 包含 agane 文件夹中的所有文件
         ('SimHei.ttf', '.'),     # 包含 SimHei.ttf 文件
-        ('bj.mp3', '.'),          # 包含 bj.mp3 文件
-        ('ship_hit.mp3', '.')    # 包含 ship_hit.mp3文件
+        ('bj.mp3', '.'),         # 包含 bj.mp3 文件
+        ('ship_hit.mp3', '.')    # 包含 ship_hit 文件
     ],
     hiddenimports=[],
     hookspath=[],
@@ -35,7 +36,7 @@ exe = EXE(
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
-    console=False,
+    console=False,  # 设置为 False 以隐藏控制台窗口
     disable_windowed_traceback=False,
     target_arch=None,
     codesign_identity=None,
